@@ -1,0 +1,37 @@
+3. select(Bio.first_name, Bio.last_name, Bio.weight)
+        .where(Bio.weight > 200)
+
+4. select(Bio.first_name, Bio.last_name, Bio.weight)
+        .where((Bio.position == 'Goaltender')&(Bio.weight > 190))
+
+5. elect(Bio.first_name, Bio.last_name, Bio.weight)
+        .where((Bio.position == 'Goaltender') | (Bio.weight > 190))      # | is the or operator, & is the and operator
+
+6. select(Bio.first_name, Bio.last_name)
+        .where(Bio.last_name.like("S%"))
+
+9. select(Bio.first_name, Bio.last_name, Bio.weight)
+        .order_by(Bio.weight)  
+
+10. select(Bio.first_name, Bio.last_name, Bio.position)
+        .order_by(Bio.position,Bio.last_name)
+
+11.    np = func.count().label("number of players")
+    
+    statement = (
+        select(Bio.position, np)
+        .group_by(Bio.position)
+        .order_by(np.desc())
+
+12. np = func.count().label("number of players")
+    avg = func.avg(Bio.weight).label("average weight")
+    
+    statement = (
+        select(Bio.position, avg)
+        .group_by(Bio.position)
+
+
+31. statement = (
+        select(Bio.first_name, Bio.last_name, Bio.position, Stats.PTS) ###takes left table as first table mentioned in select statement and joins it with table in .join()###
+        
+        .join(Stats, (Bio.first_name == Stats.first_name) & (Bio.last_name == Stats.last_name)) 
